@@ -1,0 +1,1 @@
+This is my submission for the assignment. I have made a BiLSTM DL model for the task. I have added the tensorboard files and model architecture file for visualisation. I have also made an api using fastAPI for it. Finally I did some stress testing using locusts and have given the html file containing the locusts benchmarking data as well.

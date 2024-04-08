@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.openapi.utils import get_openapi
 import uvicorn
 from pydantic import BaseModel
 import numpy as np
@@ -48,4 +49,18 @@ def predict(external_status: ExternalStatus):
     return {"internalStatus": predicted_label}
 
 
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="My FastAPI App",
+        version="1.0.0",
+        description="API for predicting internal status",
+        routes=app.routes,
+    )
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
 ######added print statements for readability and debugging##########
